@@ -1,32 +1,19 @@
-import React from "react";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import postsQueries from "../../api/graphql/queries/posts";
 
 const Posts = () => {
-  const client = new ApolloClient({
-    uri: "http://localhost:5000/graphql",
+  const { loading, data } = useQuery(postsQueries.show(1));
 
-    cache: new InMemoryCache(),
-  });
+  if (loading) return <div>Loading...</div>;
 
-  client
-    .query({
-      query: gql`
-        query ShowPost {
-          post(id: 1) {
-            title
-            rating
-          }
-        }
-      `,
-    })
-    .then((result) => console.log(result));
-
-  return <div>Posts</div>;
+  return (
+    <div>
+      <article>
+        <h2>{data.post.title}</h2>
+        <p>Rating: {data.post.rating}</p>
+      </article>
+    </div>
+  );
 };
 
 export default Posts;
