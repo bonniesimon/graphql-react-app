@@ -9,7 +9,17 @@ const show = (id) => gql`
   }
 `;
 
+const list = () => gql`
+  query ListPost {
+    posts {
+      title
+      rating
+    }
+  }
+`;
+
 const postsQueries = {
+  list,
   show,
 };
 

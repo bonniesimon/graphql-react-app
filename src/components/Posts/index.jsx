@@ -1,17 +1,17 @@
 import { useQuery } from "@apollo/client";
 import postsQueries from "../../api/graphql/queries/posts";
+import Post from "./Post";
 
 const Posts = () => {
-  const { loading, data } = useQuery(postsQueries.show(1));
+  const { loading, data } = useQuery(postsQueries.list());
 
   if (loading) return <div>Loading...</div>;
 
   return (
     <div>
-      <article>
-        <h2>{data.post.title}</h2>
-        <p>Rating: {data.post.rating}</p>
-      </article>
+      {data.posts.map((post) => (
+        <Post key={post.rating} post={post} />
+      ))}
     </div>
   );
 };
