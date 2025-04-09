@@ -1,9 +1,12 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 const Post = ({ post }) => {
   return (
     <article>
-      <h2>{post.title}</h2>
+      <NavLink to={`/posts/${post.id}`}>
+        <h2>{post.title}</h2>
+      </NavLink>
       <p>Rating: {post.rating}</p>
     </article>
   );
