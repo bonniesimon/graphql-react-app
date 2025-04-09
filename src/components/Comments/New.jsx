@@ -19,7 +19,7 @@ const New = () => {
     addTodo({
       variables: { body, postId },
       onCompleted: handleSuccess,
-      refetchQueries: postsQueries.show(postId),
+      refetchQueries: [{ query: postsQueries.show(postId) }],
     });
   };
 
