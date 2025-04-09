@@ -20,6 +20,12 @@ const Show = () => {
     <main>
       <h2>{data.post.title}</h2>
       <p>Rating: {data.post.rating}</p>
+      <details name="comments" open>
+        <summary>Comments</summary>
+        {data.post.comments.map((comment) => (
+          <article>{comment.body}</article>
+        ))}
+      </details>
     </main>
   );
 };

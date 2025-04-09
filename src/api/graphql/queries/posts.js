@@ -6,6 +6,10 @@ const show = (id) => gql`
       id
       title
       rating
+      comments {
+        id
+        body
+      }
     }
   }
 `;
