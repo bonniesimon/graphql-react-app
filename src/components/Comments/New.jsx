@@ -32,9 +32,9 @@ const New = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="text"
-          placeholder="Text"
-          aria-label="Text"
+          name="body"
+          placeholder="Body"
+          aria-label="Body"
           value={body}
           onChange={(e) => setBody(e.target.value)}
         />
