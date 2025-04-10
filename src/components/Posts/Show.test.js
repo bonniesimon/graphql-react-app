@@ -31,16 +31,20 @@ describe("Show Component", () => {
     },
   ];
 
-  it("renders a loading indicator while fetching data", () => {
+  const renderComponent = (component) => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <MemoryRouter initialEntries={[`/posts/${mockPostId}`]}>
           <Routes>
-            <Route path="/posts/:id" element={<Show />} />
+            <Route path="/posts/:id" element={component} />
           </Routes>
         </MemoryRouter>
       </MockedProvider>
     );
+  };
+
+  it("renders a loading indicator while fetching data", () => {
+    renderComponent(<Show />);
 
     expect(screen.getByRole("progressbar")).toBeInTheDocument();
   });
