@@ -61,4 +61,17 @@ describe("Show Component", () => {
       expect(screen.getByText(comment.body)).toBeInTheDocument();
     });
   });
+
+  it('navigates to the "Add Coment" page when the button is clicked', async () => {
+    renderComponent(<Show />);
+
+    await waitFor(() => screen.getByText(mockPost.title));
+
+    expect(screen.getByText("Add Comment")).toBeInTheDocument();
+
+    expect(screen.getByRole("link")).toHaveAttribute(
+      "href",
+      `/posts/${mockPostId}/comments/new`
+    );
+  });
 });
