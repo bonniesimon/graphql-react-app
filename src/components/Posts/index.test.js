@@ -51,4 +51,15 @@ describe("Posts index", () => {
 
     expect(screen.getByRole("progressbar")).toBeInTheDocument();
   });
+
+  it("renders all the posts", async () => {
+    renderComponent(<Posts />);
+
+    await waitFor(() => screen.getByText(mockPosts[0].title));
+
+    mockPosts.forEach((post) => {
+      expect(screen.getByText(post.title)).toBeInTheDocument();
+      expect(screen.getByText(`Rating: ${post.rating}`)).toBeInTheDocument();
+    });
+  });
 });
