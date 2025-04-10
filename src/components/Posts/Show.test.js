@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Routes, Route } from "react-router";
 import { MockedProvider } from "@apollo/client/testing";
 import Show from "./Show";
@@ -47,5 +47,18 @@ describe("Show Component", () => {
     renderComponent(<Show />);
 
     expect(screen.getByRole("progressbar")).toBeInTheDocument();
+  });
+
+  it("displays post details after data is loaded", async () => {
+    renderComponent(<Show />);
+
+    await waitFor(() => screen.getByText(mockPost.title));
+
+    expect(screen.getByText(mockPost.title)).toBeInTheDocument();
+    expect(screen.getByText(`Rating: ${mockPost.rating}`)).toBeInTheDocument();
+
+    mockPost.comments.forEach((comment) => {
+      expect(screen.getByText(comment.body)).toBeInTheDocument();
+    });
   });
 });
