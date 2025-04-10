@@ -26,7 +26,7 @@ const Show = () => {
       <details name="comments" open>
         <summary>Comments</summary>
         {data.post.comments.map((comment) => (
-          <article>{comment.body}</article>
+          <article key={comment.body}>{comment.body}</article>
         ))}
       </details>
     </main>
