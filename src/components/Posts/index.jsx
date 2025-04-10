@@ -5,7 +5,7 @@ import Post from "./Post";
 const Posts = () => {
   const { loading, data } = useQuery(postsQueries.list());
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <progress />;
 
   return (
     <div>
